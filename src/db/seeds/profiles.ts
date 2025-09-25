@@ -1,0 +1,127 @@
+import { db } from '@/db';
+import { profiles } from '@/db/schema';
+
+async function main() {
+    const sampleProfiles = [
+        {
+            userId: 1,
+            name: 'System Admin',
+            email: 'admin@marketplace.com',
+            phone: '+1-555-0000',
+            roles: ['admin', 'buyer'],
+            activeRole: 'admin',
+            latitude: 40.7128,
+            longitude: -74.0060,
+            city: 'New York',
+            country: 'USA',
+            createdAt: new Date('2024-01-01').toISOString(),
+            updatedAt: new Date('2024-01-01').toISOString(),
+        },
+        {
+            userId: 2,
+            name: 'Tech Store Owner',
+            email: 'techstore@example.com',
+            phone: '+1-555-0101',
+            roles: ['seller', 'buyer'],
+            activeRole: 'seller',
+            latitude: 37.7749,
+            longitude: -122.4194,
+            city: 'San Francisco',
+            country: 'USA',
+            createdAt: new Date('2024-01-05').toISOString(),
+            updatedAt: new Date('2024-01-05').toISOString(),
+        },
+        {
+            userId: 3,
+            name: 'Fashion Retailer',
+            email: 'fashion@example.com',
+            phone: '+1-555-0102',
+            roles: ['seller'],
+            activeRole: 'seller',
+            latitude: 34.0522,
+            longitude: -118.2437,
+            city: 'Los Angeles',
+            country: 'USA',
+            createdAt: new Date('2024-01-10').toISOString(),
+            updatedAt: new Date('2024-01-10').toISOString(),
+        },
+        {
+            userId: 4,
+            name: 'Electronics Hub',
+            email: 'electronics@example.com',
+            phone: '+1-555-0103',
+            roles: ['seller'],
+            activeRole: 'seller',
+            latitude: 41.8781,
+            longitude: -87.6298,
+            city: 'Chicago',
+            country: 'USA',
+            createdAt: new Date('2024-01-15').toISOString(),
+            updatedAt: new Date('2024-01-15').toISOString(),
+        },
+        {
+            userId: 5,
+            name: 'Delivery Driver Mike',
+            email: 'mike.driver@example.com',
+            phone: '+1-555-0201',
+            roles: ['worker'],
+            activeRole: 'worker',
+            latitude: 37.7749,
+            longitude: -122.4194,
+            city: 'San Francisco',
+            country: 'USA',
+            createdAt: new Date('2024-01-20').toISOString(),
+            updatedAt: new Date('2024-01-20').toISOString(),
+        },
+        {
+            userId: 6,
+            name: 'Courier Sarah',
+            email: 'sarah.courier@example.com',
+            phone: '+1-555-0202',
+            roles: ['worker'],
+            activeRole: 'worker',
+            latitude: 34.0522,
+            longitude: -118.2437,
+            city: 'Los Angeles',
+            country: 'USA',
+            createdAt: new Date('2024-01-25').toISOString(),
+            updatedAt: new Date('2024-01-25').toISOString(),
+        },
+        {
+            userId: 7,
+            name: 'John Customer',
+            email: 'john@customer.com',
+            phone: '+1-555-0301',
+            roles: ['buyer'],
+            activeRole: 'buyer',
+            latitude: 40.7128,
+            longitude: -74.0060,
+            city: 'New York',
+            country: 'USA',
+            createdAt: new Date('2024-02-01').toISOString(),
+            updatedAt: new Date('2024-02-01').toISOString(),
+        },
+        {
+            userId: 8,
+            name: 'Anna Multi',
+            email: 'anna@example.com',
+            phone: '+1-555-0302',
+            roles: ['buyer', 'worker'],
+            activeRole: 'buyer',
+            latitude: 41.8781,
+            longitude: -87.6298,
+            city: 'Chicago',
+            country: 'USA',
+            createdAt: new Date('2024-02-05').toISOString(),
+            updatedAt: new Date('2024-02-05').toISOString(),
+        }
+    ];
+
+    await db.insert(profiles).values(sampleProfiles);
+    
+    console.log('✅ Profiles seeder completed successfully');
+}
+
+main().catch((error) => {
+    console.error('❌ Seeder failed:', error);
+});
